@@ -51,4 +51,4 @@ while len(lm)!=0:
         win(ln[4])
         break
 else:
-    print("tie")
+    print("TIE")
