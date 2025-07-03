@@ -1,25 +1,26 @@
 import random
 ln=[1, 2, 3, 4, 5, 6, 7, 8, 9]
-lm=[]
 def board():
     print(ln[0],"|",ln[1],"|", ln [2])
-    print("--------")
+    print("---------")
     print(ln[3],"|",ln[4],"|",ln[5])
-    print("--------")
+    print("---------")
     print(ln [6],"|",ln[7],"|",ln[8])
 def win(w):
     if w==pc:
         print("PLAYER WIN")
     elif w==cc:
         print("COMPUTER WIN")
-pc=input("O/X")
+pc=input("O/X:")
 if pc=="O":
     cc="X"
 elif pc=="X":
-    cc="0"
+    cc="O"
 board()
 tw="pt"
-for i in range(9):
+lm=["O", "X"]
+while len(lm)!=0:
+    lm=[]
     for i in ln:
         if i!=("O") and i!=("X"):
             lm.append(i)
@@ -31,10 +32,14 @@ for i in range(9):
         print("\ncomputer's turn:",c)
     elif tw=="pt":
         c=int(input("\nplayer's turn: "))
-        ln.remove(c)
-        ln.insert(c-1,pc)
-        tw="ct"
-    lm=[]
+        if c in ln:
+            ln.remove(c)
+            lm.remove(c)
+            ln.insert(c-1,pc)
+            tw="ct"
+        else:
+            print("invalid input")
+            continue
     board()
     if (ln[0]==ln[1]==ln[2]) or (ln[0]==ln[3]==ln[6]):
         win(ln[0])
